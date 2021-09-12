@@ -6,7 +6,7 @@ from django.test import Client, RequestFactory, TestCase
 from django.urls import reverse
 
 from Storage.models import Category, Product
-from Storage.views import all_products
+from Storage.views import product_all
 
 
 @skip("demonstrating skipping for future look back")
@@ -30,7 +30,9 @@ class TestViewResponses(TestCase):
         Test allowed hosts
         :return: None
         """
-        response = self.c.get('/')
+        response = self.c.get('/',HTTP_HOST='randomaddress.com')
+        self.assertEqual(response.status_code, 400)
+        response = self.c.get('/',HTTP_HOST='bookstore.com')
         self.assertEqual(response.status_code, 200)
 
     def test_homepage_url(self):
@@ -62,10 +64,10 @@ class TestViewResponses(TestCase):
         :return:
         """
         request = HttpRequest()
-        response = all_products(request)
+        response = product_all(request)
         html = response.content.decode('utf8')
-        self.assertIn('<a class="dropdown-item" href="/search/test/">', html)
-        self.assertIn('href="/items/product-test/">product test</a>', html)
+        self.assertIn('<a class="dropdown-item" href="/shop/test/">', html)
+        self.assertIn('href="/product-test/">product test</a>', html)
         self.assertTrue(html.startswith('\n<!DOCTYPE html>\n'))
 
     def test_view_function(self):
@@ -74,8 +76,8 @@ class TestViewResponses(TestCase):
         :return:
         """
         request = self.factory.get('/')
-        response = all_products(request)
+        response = product_all(request)
         html = response.content.decode('utf8')
-        self.assertIn('<a class="dropdown-item" href="/search/test/">', html)
-        self.assertIn('href="/items/product-test/">product test</a>', html)
+        self.assertIn('<a class="dropdown-item" href="/shop/test/">', html)
+        self.assertIn('href="/product-test/">product test</a>', html)
         self.assertTrue(html.startswith('\n<!DOCTYPE html>\n'))
