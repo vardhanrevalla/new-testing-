@@ -20,7 +20,8 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('Storage.urls', namespace='Storage'))
+    path('',include('Storage.urls', namespace='Storage')),
+    path('basket/',include('basket.urls', namespace='basket')),
 ]
 
 if settings.DEBUG:
