@@ -9,7 +9,7 @@ SECRET_KEY = 'django-insecure-!jfyo48mmdh*t8%t6@7ri(mkl68k9if%#u+t_67jwn7qul(bqw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["bookstore.com","127.0.0.1"]
+ALLOWED_HOSTS = ["bookstore.com", "127.0.0.1"]
 
 # Application definition
 
@@ -48,7 +48,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'Storage.context_processors.categories',
+                'Storage.context_processors.categories',  # make categories available for all templates
+                'basket.context_processors.basket'
+
             ],
         },
     },
@@ -95,7 +97,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS=[
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
