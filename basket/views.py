@@ -7,7 +7,8 @@ from .basket import Basket
 
 def basket_summary(request):
     basket = Basket(request)
-    return render(request, 'Storage/basket/summary.html', {'basket':basket})
+    return render(request, 'basket/summary.html', {'basket': basket})
+
 
 # Not following Dry principles here for lookback and more readability
 # Can just make one function basket_all and make multiple ifs based on action
@@ -24,6 +25,7 @@ def basket_add(request):
         response = JsonResponse({'qty': basketqty})
         return response
 
+
 def basket_delete(request):
     basket = Basket(request)
     if request.POST.get('action') == 'post':
@@ -32,8 +34,9 @@ def basket_delete(request):
 
         basketqty = basket.__len__()
         baskettotal = basket.get_total_price()
-        response = JsonResponse({'qty':basketqty, 'subtotal':baskettotal})
+        response = JsonResponse({'qty': basketqty, 'subtotal': baskettotal})
         return response
+
 
 def basket_update(request):
     basket = Basket(request)
@@ -44,5 +47,5 @@ def basket_update(request):
 
         basketqty = basket.__len__()
         baskettotal = basket.get_total_price()
-        response = JsonResponse({'qty':basketqty, 'subtotal':baskettotal})
+        response = JsonResponse({'qty': basketqty, 'subtotal': baskettotal})
         return response

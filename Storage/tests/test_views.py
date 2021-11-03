@@ -1,15 +1,14 @@
-from unittest import skip
 from importlib import import_module
+from unittest import skip
 
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.http import HttpRequest
-from django.test import Client, RequestFactory, TestCase
+from django.test import Client, TestCase
 from django.urls import reverse
 
 from Storage.models import Category, Product
 from Storage.views import product_all
-
 
 
 @skip("demonstrating skipping for future look back")
@@ -33,9 +32,9 @@ class TestViewResponses(TestCase):
         Test allowed hosts
         :return: None
         """
-        response = self.c.get('/',HTTP_HOST='randomaddress.com')
+        response = self.c.get('/', HTTP_HOST='randomaddress.com')
         self.assertEqual(response.status_code, 400)
-        response = self.c.get('/',HTTP_HOST='bookstore.com')
+        response = self.c.get('/', HTTP_HOST='bookstore.com')
         self.assertEqual(response.status_code, 200)
 
     def test_homepage_url(self):

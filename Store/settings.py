@@ -9,7 +9,7 @@ SECRET_KEY = 'django-insecure-!jfyo48mmdh*t8%t6@7ri(mkl68k9if%#u+t_67jwn7qul(bqw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["bookstore.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["bookstore.com", "127.0.0.1", 'localhost']
 
 # Application definition
 
@@ -22,6 +22,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Storage',
     'basket',
+    'account',
+    'payment',
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -103,6 +106,23 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+# Basket session ID
+BASKET_SESSION_ID = 'basket'
+
+# Custom user model
+AUTH_USER_MODEL = 'account.UserBase'
+LOGIN_REDIRECT_URL = '/account/dashboard'
+LOGIN_URL = '/account/login/'
+
+# Email setting
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Stripe Payment , use stripe listen to get it (terminal)
+# PUBLISHABLE_KEY ='pk_test_51JrgokSGs2eAhid6Sp2draIVvbY8WAii04cBMjpu6RRIE4Pu2bhxXRUUbqcJgIsE47gwD9Fi2lk6lEtb2vRLpVQC00inSL6r6S'
+# SECRET_KEY = 'sk_test_51JrgokSGs2eAhid6WKLfptSHbSCxCTDIQqkviUyW3mnRYrdcbnIOrsfoKzTwy9IrRC8mehNH9lExZ1x9zthRBjUe00gZgpDPpZ'
+STRIPE_ENDPOINT_SECRET = 'whsec_tA6Ks5MJ9AsObufUqTsEJBpMVeLUZn2R'
+# stripe listen --forward-to localhost:8000/payment/webhook/
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
