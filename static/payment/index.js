@@ -1,8 +1,10 @@
-var stripe = Stripe("pk_test_51JrgokSGs2eAhid6Sp2draIVvbY8WAii04cBMjpu6RRIE4Pu2bhxXRUUbqcJgIsE47gwD9Fi2lk6lEtb2vRLpVQC00inSL6r6S")
+
+var stripe = Stripe('pk_test_51JrgokSGs2eAhid6Sp2draIVvbY8WAii04cBMjpu6RRIE4Pu2bhxXRUUbqcJgIsE47gwD9Fi2lk6lEtb2vRLpVQC00inSL6r6S');
 
 var elem = document.getElementById('submit');
 clientsecret = elem.getAttribute('data-secret');
 
+// Set up Stripe.js and Elements to use in checkout form
 var elements = stripe.elements();
 var style = {
     base: {
@@ -11,7 +13,9 @@ var style = {
         fontSize: '16px'
     }
 };
-var card = elements.create("card", {style: style});
+
+
+var card = elements.create("card", { style: style });
 card.mount("#card-element");
 
 card.on('change', function(event) {

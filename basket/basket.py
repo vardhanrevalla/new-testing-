@@ -14,7 +14,7 @@ class Basket():
     def __init__(self, request):
         self.session = request.session
         basket = self.session.get(settings.BASKET_SESSION_ID)
-        if 'skey' not in request.session:
+        if settings.BASKET_SESSION_ID not in request.session:
             basket = self.session[settings.BASKET_SESSION_ID] = {}
         self.basket = basket
 

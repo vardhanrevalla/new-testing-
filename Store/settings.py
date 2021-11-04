@@ -122,7 +122,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # PUBLISHABLE_KEY ='pk_test_51JrgokSGs2eAhid6Sp2draIVvbY8WAii04cBMjpu6RRIE4Pu2bhxXRUUbqcJgIsE47gwD9Fi2lk6lEtb2vRLpVQC00inSL6r6S'
 # SECRET_KEY = 'sk_test_51JrgokSGs2eAhid6WKLfptSHbSCxCTDIQqkviUyW3mnRYrdcbnIOrsfoKzTwy9IrRC8mehNH9lExZ1x9zthRBjUe00gZgpDPpZ'
 STRIPE_ENDPOINT_SECRET = 'whsec_tA6Ks5MJ9AsObufUqTsEJBpMVeLUZn2R'
-# stripe listen --forward-to localhost:8000/payment/webhook/
+# use stripe listen --forward-to localhost:8000/payment/webhook/
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

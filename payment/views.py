@@ -40,6 +40,7 @@ def BasketView(request):
 
 @csrf_exempt
 def stripe_webhook(request):
+    print("testing webgook")
     payload = request.body
     event = None
 
@@ -50,9 +51,11 @@ def stripe_webhook(request):
     except ValueError as e:
         print(e)
         return HttpResponse(status=400)
-
+    print("testing 1"+"3")
+    print(event.type)
     # Handle the event
     if event.type == 'payment_intent.succeeded':
+        print(f"succes,{event.data.object.client_secret}")
         payment_confirmation(event.data.object.client_secret)
 
     else:
